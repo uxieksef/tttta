@@ -5,7 +5,7 @@ PORT = 8080
 name = os.environ['NAME']
 if name == None or len(name) == 0:
   name = "world"
-MESSAGE = "auto compile second time, can you see please, " + name + "!"
+MESSAGE = "auto compile second time, can you see please, " + name + "!"+ "db link :  button-db-01.c6oywpsw8kcj.us-east-1.rds.amazonaws.com, port:3306, name:instlike "
 print("Message: '" + MESSAGE + "'")
 
 app = Flask(__name__)
