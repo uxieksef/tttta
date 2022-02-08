@@ -4,6 +4,7 @@ import requests
 import json
 import datetime
 import time
+import mysql.connector
 
 PORT = 8080
 name = os.environ['NAME']
