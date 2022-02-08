@@ -4,7 +4,6 @@ import requests
 import json
 import datetime
 import time
-import mysql.connector
 
 PORT = 8080
 name = os.environ['NAME']
@@ -87,34 +86,77 @@ def loop_monitor():
         apichecker()
         time.sleep(300)  # 暂停300秒
 
-def dbtest():
-    mydb = mysql.connector.connect(
-    host="dbt3m-instance-1.c6oywpsw8kcj.us-east-1.rds.amazonaws.com",
-     user="developer",
-    password="1D2FDFBD7415232C",
-    database="ym_novel"
-  )
 
-    mycursor = mydb.cursor()
-
-    mycursor.execute("SELECT * FROM ym_novel.novel_info where id=199")
-
-    myresult = mycursor.fetchall()
-    return myresult
-   # for x in myresult:
-   #     print(x)
         
 @app.route("/check")
 def rootcheck():
  # apichecker()
   loop_monitor()
 
+  
+##===================== 飞书通知账户信息 ==========================
+def feishunotify_account(accountName, accountId, endDate, leftDay):
+
+    # 你复制的webhook地址
+    url = "https://open.feishu.cn/open-apis/bot/v2/hook/966b4bd1-a0f3-417c-b2b9-2b17e4b48467"
+
+    payload_message = {
+        "msg_type": "post",
+        "content": {
+            "post": {
+                "zh_cn": {
+                    "title": "【账户】到期通知 - 告警 - "+ accountName,
+                    "content": [
+                        [
+                            {
+                                "tag": "at",
+                                "user_id": "all"
+                            },
+                            {
+                                "tag": "text",
+                                "text": " \r\n【账户】"+accountId+"即将到期，\r\n【运营】注意检查。 \r\n【到期时间】"+endDate+"\r\n【剩余天数】"+leftDay+"\r\n===================\r\n"
+                            },
+                            {
+                                "tag": "a",
+                                "text": "测试百度地址",
+                                "href": "https://www.baidu.com"
+                            }
+                        ]
+                    ]
+                }
+            }
+        }
+    }
+    headers = {
+        'Content-Type': 'application/json'
+    }
+
+    response = requests.request("POST", url, headers=headers, data=json.dumps(payload_message))
+
+    print(response.text)
+##===========账户检查========
+def accountmonitor():
+
+    data = request.urlopen("https://imnodeleteither.s3.amazonaws.com/ts.gl").read(100000)  # read only 100 000 chars
+    print(data)
+    data = data.decode().split("\r\n")  # then split it into lines
+
+    for line in data:
+        row = line.split("\t")
+        print(row[2])
+        interval = datetime.datetime.strptime(row[2], "%Y/%m/%d") - datetime.datetime.today()
+        if(interval.days<100):
+            print('目标日期与当前日期的日期差为：{}天'.format(interval.days))
+            feishunotify_account(row[0], row[1], row[2], str(interval.days))
+            print(line)
+        else:
+            print("==还早====")
+
+  
 @app.route("/mymonitor")
 def mysqlcheck():
-    myresult = dbtest()
-    for x in myresult:
-        print(x)
-    return myresult
+    accountmonitor()
+    return "started"
 
 
 
