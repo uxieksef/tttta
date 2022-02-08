@@ -99,9 +99,9 @@ def dbtest():
     mycursor.execute("SELECT * FROM ym_novel.novel_info where id=199")
 
     myresult = mycursor.fetchall()
-
-    for x in myresult:
-        print(x)
+    return myresult
+   # for x in myresult:
+   #     print(x)
         
 @app.route("/check")
 def rootcheck():
@@ -110,7 +110,10 @@ def rootcheck():
 
 @app.route("/mymonitor")
 def mysqlcheck():
-    dbtest()
+    myresult = dbtest()
+    for x in myresult:
+        print(x)
+    return myresult
 
 
 
