@@ -23,7 +23,7 @@ def root():
   return result
 
 
-def feishunotify():
+def feishunotify_tracker():
     # 自定义关键词key_word
     key_word = "关键词"
 
@@ -73,7 +73,7 @@ def apichecker():
     jsonstr = json.loads(tt.text)
     if(jsonstr['message'] == 'success'):
         print('ssssss')
-        feishunotify()
+        feishunotify_tracker()
     else:
         print('failed')
         
@@ -81,18 +81,18 @@ def time_printer():
     now = datetime.datetime.now()
     ts = now.strftime('%Y-%m-%d %H:%M:%S')
     print('do func time :', ts)
-def loop_monitor():
+def loop_monitor_tracker():
     while True:
         time_printer()
         apichecker()
-        time.sleep(300)  # 暂停300秒
+        time.sleep(600)  # 暂停600秒
 
 
         
 @app.route("/check")
 def rootcheck():
  # apichecker()
-  loop_monitor()
+    loop_monitor_tracker()
 
   
 ##===================== 飞书通知账户信息 ==========================
@@ -153,10 +153,14 @@ def accountmonitor():
         else:
             print("==还早====")
 
+def loop_monitor_account():
+    while True:
+        accountmonitor()
+        time.sleep(3600)  # 暂停3600秒
   
 @app.route("/mymonitor")
 def mysqlcheck():
-    accountmonitor()
+    loop_monitor_account()
     return "started"
 
 
