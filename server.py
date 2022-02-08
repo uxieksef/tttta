@@ -84,11 +84,12 @@ def loop_monitor():
     while True:
         time_printer()
         apichecker()
-        time.sleep(5)  # 暂停5秒
+        time.sleep(300)  # 暂停300秒
         
 @app.route("/check")
 def rootcheck():
-  apichecker()
+ # apichecker()
+  loop_monitor()
 
 
 
