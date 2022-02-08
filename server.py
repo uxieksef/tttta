@@ -2,6 +2,8 @@ from flask import Flask
 import os
 import requests
 import json
+import datetime
+import time
 
 PORT = 8080
 name = os.environ['NAME']
@@ -55,6 +57,15 @@ def apichecker():
     else:
         print('failed')
         
+def time_printer():
+    now = datetime.datetime.now()
+    ts = now.strftime('%Y-%m-%d %H:%M:%S')
+    print('do func time :', ts)
+def loop_monitor():
+    while True:
+        time_printer()
+        apichecker()
+        time.sleep(5)  # 暂停5秒
         
 @app.route("/check")
 def rootcheck():
