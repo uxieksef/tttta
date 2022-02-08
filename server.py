@@ -30,11 +30,30 @@ def feishunotify():
     url = "https://open.feishu.cn/open-apis/bot/v2/hook/966b4bd1-a0f3-417c-b2b9-2b17e4b48467"
 
     payload_message = {
-
-        "msg_type": "text",
+        "msg_type": "post",
         "content": {
-
-            "text": key_word + "测试信息如下"
+            "post": {
+                "zh_cn": {
+                    "title": "【项目】tracker通知 - 告警",
+                    "content": [
+                        [
+                            {
+                                "tag": "at",
+                                "user_id": "all"
+                            },
+                            {
+                                "tag": "text",
+                                "text": " \r\n【项目】Tracker接口异常，\r\n【服务端】注意检查。 \r\n===================\r\n"
+                            },
+                            {
+                                "tag": "a",
+                                "text": "测试百度地址：",
+                                "href": "https://www.baidu.com"
+                            }
+                        ]
+                    ]
+                }
+            }
         }
     }
     headers = {
