@@ -85,11 +85,32 @@ def loop_monitor():
         time_printer()
         apichecker()
         time.sleep(300)  # 暂停300秒
+
+def dbtest():
+    mydb = mysql.connector.connect(
+    host="dbt3m-instance-1.c6oywpsw8kcj.us-east-1.rds.amazonaws.com",
+     user="developer",
+    password="1D2FDFBD7415232C",
+    database="ym_novel"
+  )
+
+    mycursor = mydb.cursor()
+
+    mycursor.execute("SELECT * FROM ym_novel.novel_info where id=199")
+
+    myresult = mycursor.fetchall()
+
+    for x in myresult:
+        print(x)
         
 @app.route("/check")
 def rootcheck():
  # apichecker()
   loop_monitor()
+
+@app.route("/mymonitor")
+def mysqlcheck():
+    dbtest()
 
 
 
