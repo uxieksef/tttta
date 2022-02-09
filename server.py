@@ -24,11 +24,9 @@ def root():
 
 
 def feishunotify_tracker():
-    # 自定义关键词key_word
-    key_word = "关键词"
 
-    # 你复制的webhook地址
-    url = "https://open.feishu.cn/open-apis/bot/v2/hook/966b4bd1-a0f3-417c-b2b9-2b17e4b48467"
+    # trackermonitor webhook地址
+    url = "https://open.feishu.cn/open-apis/bot/v2/hook/a8000b38-59e9-477f-b3b7-731479797304"
 
     payload_message = {
         "msg_type": "post",
@@ -73,8 +71,8 @@ def apichecker():
     jsonstr = json.loads(tt.text)
     if(jsonstr['message'] == 'success'):
         print('ssssss')
-        feishunotify_tracker()
     else:
+        feishunotify_tracker()
         print('failed')
         
 def time_printer():
@@ -85,7 +83,7 @@ def loop_monitor_tracker():
     while True:
         time_printer()
         apichecker()
-        time.sleep(600)  # 暂停600秒
+        time.sleep(3600)  # 暂停3600秒
 
 
         
@@ -98,8 +96,8 @@ def rootcheck():
 ##===================== 飞书通知账户信息 ==========================
 def feishunotify_account(accountName, accountId, endDate, leftDay):
 
-    # 你复制的webhook地址
-    url = "https://open.feishu.cn/open-apis/bot/v2/hook/966b4bd1-a0f3-417c-b2b9-2b17e4b48467"
+    # 账号监测 地址
+    url = "https://open.feishu.cn/open-apis/bot/v2/hook/58ea1d32-0cc7-47d9-922d-e754e1cb5768"
 
     payload_message = {
         "msg_type": "post",
@@ -156,7 +154,7 @@ def accountmonitor():
 def loop_monitor_account():
     while True:
         accountmonitor()
-        time.sleep(3600)  # 暂停3600秒
+        time.sleep(36000)  # 暂停36000秒
   
 @app.route("/mymonitor")
 def mysqlcheck():
