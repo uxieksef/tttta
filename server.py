@@ -26,7 +26,7 @@ def root():
 def feishunotify_tracker():
 
     # trackermonitor webhook地址
-    url = "https://open.feishu.cn/open-apis/bot/v2/hook/a8000b38-59e9-477f-b3b7-731479797304"
+    url = "https://open.feishu.cn/open-apis/bot/v2/hook/046d48e2-db94-4f68-9524-f6165747ef36"
 
     payload_message = {
         "msg_type": "post",
@@ -97,7 +97,7 @@ def rootcheck():
 def feishunotify_account(accountName, accountId, endDate, leftDay):
 
     # 账号监测 地址
-    url = "https://open.feishu.cn/open-apis/bot/v2/hook/58ea1d32-0cc7-47d9-922d-e754e1cb5768"
+    url = "https://open.feishu.cn/open-apis/bot/v2/hook/d93a658f-62d2-43ab-88de-1c5cfdc3c786"
 
     payload_message = {
         "msg_type": "post",
