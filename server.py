@@ -144,7 +144,7 @@ def accountmonitor():
         row = line.split("\t")
         print(row[2])
         interval = datetime.datetime.strptime(row[2], "%Y/%m/%d") - datetime.datetime.today()
-        if(interval.days<100):
+        if(interval.days<30):
             print('目标日期与当前日期的日期差为：{}天'.format(interval.days))
             feishunotify_account(row[0], row[1], row[2], str(interval.days))
             print(line)
