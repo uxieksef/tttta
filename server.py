@@ -154,7 +154,7 @@ def accountmonitor():
 def loop_monitor_account():
     while True:
         accountmonitor()
-        time.sleep(36000)  # 暂停36000秒
+        time.sleep(86400)  # 暂停86400秒
   
 @app.route("/mymonitor")
 def mysqlcheck():
