@@ -90,9 +90,8 @@ def loop_monitor_tracker():
 
 
         
-@app.route("/check")
-def rootcheck():
- # apichecker()
+#@app.route("/check")
+#def rootcheck():
     #loop_monitor_tracker()
 
   
