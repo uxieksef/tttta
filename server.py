@@ -46,7 +46,7 @@ def feishunotify_tracker():
                             },
                             {
                                 "tag": "a",
-                                "text": "测试百度地址：",
+                                "text": "测试百度：",
                                 "href": "https://www.baidu.com"
                             }
                         ]
