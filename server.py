@@ -20,7 +20,7 @@ app = Flask(__name__)
 def root():
   print("starting...")
   loop_monitor_account()
-  loop_monitor_tracker()
+  # loop_monitor_tracker()
   print("Handling web request. Returning message.started")
   result = MESSAGE.encode("utf-8")
   return result
