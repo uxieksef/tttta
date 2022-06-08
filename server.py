@@ -26,17 +26,17 @@ def root():
   return result
 
 
-def feishunotify_tracker():
+def feishunotify_tr():
 
-    # trackermonitor webhook地址
-    url = "https://open.feishu.cn/open-apis/bot/v2/hook/046d48e2-db94-4f68-9524-f6165747ef36"
+    # monitor webhook地址
+    url = ""
 
     payload_message = {
         "msg_type": "post",
         "content": {
             "post": {
                 "zh_cn": {
-                    "title": "【项目】tracker通知 - 告警",
+                    "title": "【项目】通知 - 告警",
                     "content": [
                         [
                             {
@@ -45,7 +45,7 @@ def feishunotify_tracker():
                             },
                             {
                                 "tag": "text",
-                                "text": " \r\n【项目】Tracker接口异常，\r\n【服务端】注意检查。 \r\n===================\r\n"
+                                "text": " 接口异常，\r\n【服务端】注意检查。 \r\n===================\r\n"
                             },
                             {
                                 "tag": "a",
@@ -68,7 +68,7 @@ def feishunotify_tracker():
     print(response.text)
 
 def apichecker():
-    url='http://api.funnyplay.me/chkr/infer?cv=vtpcOsl5kXYxdJfE2do3tt7kGS9va42z81rkWal25IzhiaBCPGLRVJ406Ujv7vX2strM6cGmvssuilxutg0jCCKIpPTLwsYcf13/4XKc3Xx/EVCW1taPdCmQLXzVcKkRtx8FDS/ZtS4Scf0hUQSKbPpJXT5AjSWg1mTRMFbr5TCO3vXi0t5hlgdAKt7e532B'
+    url=''
     tt = requests.post(url=url)
     print(tt.text)
     jsonstr = json.loads(tt.text)
@@ -82,7 +82,7 @@ def time_printer():
     now = datetime.datetime.now()
     ts = now.strftime('%Y-%m-%d %H:%M:%S')
     print('do func time :', ts)
-def loop_monitor_tracker():
+def loop_monitor_tr():
     while True:
         time_printer()
         apichecker()
@@ -92,14 +92,14 @@ def loop_monitor_tracker():
         
 #@app.route("/check")
 #def rootcheck():
-    #loop_monitor_tracker()
+    #loop_monitor_tr()
 
   
 ##===================== 飞书通知账户信息 ==========================
 def feishunotify_account(accountName, accountId, endDate, leftDay):
 
     # 账号监测 地址
-    url = "https://open.feishu.cn/open-apis/bot/v2/hook/d93a658f-62d2-43ab-88de-1c5cfdc3c786"
+    url = ""
 
     payload_message = {
         "msg_type": "post",
@@ -115,7 +115,7 @@ def feishunotify_account(accountName, accountId, endDate, leftDay):
                             },
                             {
                                 "tag": "text",
-                                "text": " \r\n【账户】"+accountId+"即将到期，\r\n【运营】注意检查。 \r\n【到期时间】"+endDate+"\r\n【剩余天数】"+leftDay+"\r\n===================\r\n"
+                                "text": " \r\n【运营】注意检查。 \r\n【到期时间】"+endDate+"\r\n【剩余天数】"+leftDay+"\r\n===================\r\n"
                             },
                             {
                                 "tag": "a",
@@ -138,7 +138,7 @@ def feishunotify_account(accountName, accountId, endDate, leftDay):
 ##===========账户检查========
 def accountmonitor():
 
-    data = request.urlopen("https://imnodeleteither.s3.amazonaws.com/ts.gl").read(100000)  # read only 100 000 chars
+    data = request.urlopen("文件网络地址").read(100000)  # read only 100 000 chars
     print(data)
     data = data.decode().split("\r\n")  # then split it into lines
 
